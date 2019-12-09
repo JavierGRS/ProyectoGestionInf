@@ -15,7 +15,6 @@ public class VistaInicio {
 	public JFrame frame;
 	private JTextField fieldUsuario;
 	private JTextField fieldContrasena;
-	private JButton commit;
 	private JButton submit;
 
 	/**
@@ -85,7 +84,18 @@ public class VistaInicio {
 		
 		
 	}
+
 	
+	
+	
+	public String getFieldUsuario() {
+		return fieldUsuario.getText();
+	}
+
+	public String getFieldContrasena() {
+		return fieldContrasena.getText();
+	}
+
 	private void controller(ActionListener ac) {
 		submit.addActionListener(ac);
 		submit.setActionCommand("ENTRAR");

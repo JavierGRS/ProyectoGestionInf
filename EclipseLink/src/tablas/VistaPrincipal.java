@@ -16,12 +16,8 @@ public class VistaPrincipal {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
-	private JTable table;
 	private JTable tabla;
-
-
 	
-
 	/**
 	 * Create the application.
 	 */
@@ -94,9 +90,21 @@ public class VistaPrincipal {
 		comboBox.setBounds(105, 345, 506, 75);
 		frame.getContentPane().add(comboBox);
 		
+		//String[] columnas = {"ID","NIF_PACIENTE","CULTIVO","SOLUCION"}; 
 		tabla = new JTable();
+		//DefaultTableModel modeloTabla = new DefaultTableModel(); 
+		//modeloTabla.setColumnIdentifiers(columnas);
+		//modeloTabla.setDataVector(new Object[][] {columnas,},columnas);
+		//tabla.setModel(modeloTabla);
 		tabla.setBounds(27, 72, 584, 130);
 		frame.getContentPane().add(tabla);
 		
+	}		
+	
+	public void setModeloTabla(DefaultTableModel modeloTabla) {
+		tabla.setModel(modeloTabla);
 	}
+		
+	
+	
 }

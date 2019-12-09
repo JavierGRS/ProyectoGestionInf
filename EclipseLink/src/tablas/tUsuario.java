@@ -1,7 +1,6 @@
 package tablas;
 
 import java.io.Serializable;
-import java.lang.String;
 import javax.persistence.*;
 
 /**
