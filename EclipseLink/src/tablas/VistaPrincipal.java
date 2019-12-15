@@ -1,11 +1,17 @@
 package tablas;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -17,6 +23,14 @@ public class VistaPrincipal {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTable tabla;
+	private DefaultListModel<String> modeloSol;
+	private	JList<String> listaSol;
+	private JButton bLimpiar;
+	private JButton bInsertar;
+	private JButton bActualizar;
+	private JButton bSalir;
+	private JButton bBorrar;
+	
 	
 	/**
 	 * Create the application.
@@ -70,41 +84,135 @@ public class VistaPrincipal {
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		JButton btnInsertar = new JButton("Insertar");
-		btnInsertar.setBounds(105, 444, 89, 23);
-		frame.getContentPane().add(btnInsertar);
+		bInsertar = new JButton("Insertar");
+		bInsertar.setBounds(105, 444, 89, 23);
+		frame.getContentPane().add(bInsertar);
 		
-		JButton btnBorrar = new JButton("Borrar");
-		btnBorrar.setBounds(241, 444, 89, 23);
-		frame.getContentPane().add(btnBorrar);
+		bBorrar = new JButton("Borrar");
+		bBorrar.setBounds(241, 444, 89, 23);
+		frame.getContentPane().add(bBorrar);
 		
-		JButton btnActualizar = new JButton("Actualizar");
-		btnActualizar.setBounds(373, 444, 89, 23);
-		frame.getContentPane().add(btnActualizar);
+		bActualizar = new JButton("Actualizar");
+		bActualizar.setBounds(373, 444, 89, 23);
+		frame.getContentPane().add(bActualizar);
 		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setBounds(499, 444, 89, 23);
-		frame.getContentPane().add(btnSalir);
+		bSalir = new JButton("Salir");
+		bSalir.setBounds(600, 444, 89, 23);
+		frame.getContentPane().add(bSalir);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(105, 345, 506, 75);
-		frame.getContentPane().add(comboBox);
+		bLimpiar = new JButton("Limpiar");
+		bLimpiar.setBounds(487, 444, 89, 23);
+		frame.getContentPane().add(bLimpiar);
 		
-		//String[] columnas = {"ID","NIF_PACIENTE","CULTIVO","SOLUCION"}; 
+		
+		listaSol = new JList<String>();
+		modeloSol = new DefaultListModel<String>();
+		listaSol.setModel(modeloSol);
+		
+		cargarSoluciones();
+		
+		
+		listaSol.setBounds(105, 345, 506, 75);
+		frame.getContentPane().add(listaSol);
+		
+		 
 		tabla = new JTable();
-		//DefaultTableModel modeloTabla = new DefaultTableModel(); 
-		//modeloTabla.setColumnIdentifiers(columnas);
-		//modeloTabla.setDataVector(new Object[][] {columnas,},columnas);
-		//tabla.setModel(modeloTabla);
 		tabla.setBounds(27, 72, 584, 130);
 		frame.getContentPane().add(tabla);
 		
 	}		
 	
+	private void cargarSoluciones() {
+		for(Solucion s:Solucion.ListaSolucion()) {
+			modeloSol.addElement(s.getSolución());
+		}
+	}
+
+	public void setTextField(String t) {
+		this.textField.setText(t);
+	}
+
+	public void setTextField_1(String t) {
+		this.textField_1.setText(t);
+	}
+
+	public void setTextField_2(String t) {
+		this.textField_2.setText(t);
+	}
+	
 	public void setModeloTabla(DefaultTableModel modeloTabla) {
 		tabla.setModel(modeloTabla);
 	}
-		
 	
+	public JTable getTabla() {
+		return tabla;
+	}
+	
+	public JList<String> getListaSol () {
+		return listaSol;
+	}
+
+	public void seleccionarSolucion(String solucion) {
+		listaSol.setSelectedIndex(this.modeloSol.indexOf(solucion));
+	}
+	
+	public void controller(ActionListener ac) {
+		this.bActualizar.addActionListener(ac);
+		this.bBorrar.addActionListener(ac);
+		this.bInsertar.addActionListener(ac);
+		this.bLimpiar.addActionListener(ac);
+		this.bSalir.addActionListener(ac);
+		
+		this.bActualizar.setActionCommand("ACTUALIZAR");
+		this.bBorrar.setActionCommand("BORRAR");
+		this.bInsertar.setActionCommand("INSERTAR");
+		this.bLimpiar.setActionCommand("LIMPIAR");
+		this.bSalir.setActionCommand("SALIR");
+	}
+
+	public void controllerClick(MouseListener cp) {
+			tabla.addMouseListener(cp);
+	}
+
+	public String getTextField() {
+		return textField.getText();
+	}
+
+	public String getTextField_1() {
+		return textField_1.getText();
+	}
+
+	public String getTextField_2() {
+		return textField_2.getText();
+	}
+
+	public void controllerButton(ActionListener ac) {
+		this.bActualizar.addActionListener(ac);
+		this.bBorrar.addActionListener(ac);
+		this.bInsertar.addActionListener(ac);
+		this.bLimpiar.addActionListener(ac);
+		this.bSalir.addActionListener(ac);
+		
+		this.bActualizar.setActionCommand("ACTUALIZAR");
+		this.bBorrar.setActionCommand("BORRAR");
+		this.bInsertar.setActionCommand("INSERTAR");
+		this.bLimpiar.setActionCommand("LIMPIAR");
+		this.bSalir.setActionCommand("SALIR");
+		
+	}
+
+	public void limpiar() {
+		 this.getTabla().clearSelection();
+		 this.setTextField("");
+		 this.setTextField_1("");
+		 this.setTextField_2("");
+		 this.getListaSol().clearSelection();		
+	}
+
+	public void activarBotones(boolean insertar, boolean modificar, boolean borrar) {
+		bInsertar.setVisible(insertar);
+		bActualizar.setVisible(modificar);
+		bBorrar.setVisible(borrar);
+	}
 	
 }

@@ -26,7 +26,19 @@ public class tPermiso implements Serializable {
 
 	public tPermiso() {
 		super();
-	}   
+	}
+	
+	public tPermiso(tRol rolName, String pantalla, boolean acceso, boolean insertar, boolean modificar,
+			boolean borrar) {
+		super();
+		this.rolName = rolName;
+		this.pantalla = pantalla;
+		this.acceso = acceso;
+		this.insertar = insertar;
+		this.modificar = modificar;
+		this.borrar = borrar;
+	}
+	
 	public tRol getRolName() {
 		return this.rolName;
 	}

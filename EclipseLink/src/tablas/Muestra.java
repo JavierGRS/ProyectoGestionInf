@@ -15,6 +15,7 @@ public class Muestra implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue
 	private int ID;
 	private String NIF_Paciente;
 	private String Cultivo;
@@ -25,9 +26,8 @@ public class Muestra implements Serializable {
 		super();
 	}   
 	
-	public Muestra(int iD, String nIF_Paciente, String cultivo, tablas.Solucion solucion) {
+	public Muestra(String nIF_Paciente, String cultivo, tablas.Solucion solucion) {
 		super();
-		ID = iD;
 		NIF_Paciente = nIF_Paciente;
 		Cultivo = cultivo;
 		Solucion = solucion;

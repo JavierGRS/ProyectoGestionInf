@@ -12,14 +12,6 @@ import javax.persistence.*;
 
 public class tRol implements Serializable {
 
-	   
-	public tRol(String rolName, String rolDes, boolean admin) {
-		super();
-		this.rolName = rolName;
-		this.rolDes = rolDes;
-		this.admin = admin;
-	}
-
 	@Id
 	private String rolName;
 	@Column(nullable = false)
@@ -30,6 +22,14 @@ public class tRol implements Serializable {
 	public tRol() {
 		super();
 	}   
+	
+	public tRol(String rolName, String rolDes, boolean admin) {
+		super();
+		this.rolName = rolName;
+		this.rolDes = rolDes;
+		this.admin = admin;
+	}
+
 
 	public String getRolName() {
 		return this.rolName;
@@ -51,6 +51,9 @@ public class tRol implements Serializable {
 
 	public void setAdmin(boolean admin) {
 		this.admin = admin;
+	}
+	public String toString() {
+		return this.getRolName();
 	}
    
 }

@@ -2,6 +2,8 @@ package tablas;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -14,6 +16,7 @@ public class Solucion implements Serializable {
 
 	   
 	@Id
+	@GeneratedValue
 	private int ID;
 	private String Solución;
 	private String Uso;
@@ -23,9 +26,8 @@ public class Solucion implements Serializable {
 		super();
 	}   
 	
-	public Solucion(int iD, String solución, String uso) {
+	public Solucion(String solución, String uso) {
 		super();
-		ID = iD;
 		Solución = solución;
 		Uso = uso;
 	}
@@ -50,6 +52,16 @@ public class Solucion implements Serializable {
 
 	public void setUso(String Uso) {
 		this.Uso = Uso;
+	}
+
+	public static List<Solucion> ListaSolucion() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("eclipseLinkPersistenceUnit");
+		EntityManager manager = factory.createEntityManager();
+		List<Solucion> resultList = manager.createQuery("SELECT A FROM  Solucion A", Solucion.class)
+				.getResultList();
+		manager.close();
+		factory.close();
+		return resultList;
 	}
 	
    

@@ -16,6 +16,8 @@ public class VistaInicio {
 	private JTextField fieldUsuario;
 	private JTextField fieldContrasena;
 	private JButton submit;
+	private JLabel error;
+	
 
 	/**
 	 * Launch the application.
@@ -71,22 +73,26 @@ public class VistaInicio {
 		frame.getContentPane().add(fieldUsuario);
 		fieldUsuario.setColumns(10);
 		
+		fieldUsuario.setText("111111111A");
+		
 		fieldContrasena = new JTextField();
 		fieldContrasena.setBounds(158, 158, 134, 20);
 		frame.getContentPane().add(fieldContrasena);
 		fieldContrasena.setColumns(10);
 		
+		fieldContrasena.setText("admin");
+		
 		submit = new JButton("Entrar");
 		submit.setBounds(158, 188, 134, 40);
 		frame.getContentPane().add(submit);
 		
-		
-		
+		error = new JLabel();
+		error.setBounds(158,80,300,25);
+		frame.getContentPane().add(error);
+		error.setVisible(false);
 		
 	}
 
-	
-	
 	
 	public String getFieldUsuario() {
 		return fieldUsuario.getText();
@@ -99,6 +105,11 @@ public class VistaInicio {
 	private void controller(ActionListener ac) {
 		submit.addActionListener(ac);
 		submit.setActionCommand("ENTRAR");
+	}
+
+	public void mostrarError(String s) {
+		error.setText("<html><font color='red'>"+s+"</font></html>");
+		error.setVisible(true);
 	}
 
 }

@@ -16,12 +16,11 @@ public class principal {
 		EntityTransaction tx = manager.getTransaction();
 		tx.begin();
 		try {
-			tRol rol = new tRol("oc","ben10 ya",true);
-			manager.persist(rol);
-			manager.persist(new tUsuario("Amancio","Ortiga",rol));
-			Solucion sol = new Solucion(13,"hola","oc");
-			manager.persist(sol);
-			manager.persist(new Muestra(35,"dejate","de sierra",sol)); 
+			tRol r = new tRol("Usuario","El usuario NO podrá insertar ni borrar ninguna muestra, pero si modificar una ya existente.",false);
+			manager.persist(r);
+			manager.persist(new tPermiso(r,"Muestras",true,false,false,true));
+			
+			
 			tx.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

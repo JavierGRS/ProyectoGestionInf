@@ -12,7 +12,7 @@
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://remotemysql.com:3306/C0UzbVoh0X" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://remotemysql.com:3306/C0UzbVoh0X?useSSL=false" />
 			<property name="javax.persistence.jdbc.user" value="C0UzbVoh0X"/>
 			<property name="javax.persistence.jdbc.password" value="JW3TNmXZzm"/>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
